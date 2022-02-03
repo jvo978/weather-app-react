@@ -5,9 +5,7 @@ import axios from 'axios';
 
 function Page() {
 
-const onSubmit = (location) => {
-
-    const sendRequest = async () => {
+const onSubmit = async location => {
         try {
             const resp = await axios({
                 method: 'GET',
@@ -24,8 +22,6 @@ const onSubmit = (location) => {
         } catch(err) {
             console.log(err)
         }
-    }
-    sendRequest()
 }
 
   return (
