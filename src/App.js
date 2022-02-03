@@ -1,8 +1,10 @@
 import './App.css';
+import Page from './components/Page'
 
 function App() {
   return (
-    <div className="App">
+    <div className="app__container">
+      <Page />
     </div>
   );
 }

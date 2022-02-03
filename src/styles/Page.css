@@ -1,0 +1,20 @@
+.page__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    height: 450px;
+    background-color: #708090;
+    border: 1px solid black;
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 25px;
+}
+
+.page__header {
+    font-size: 50px;
+    margin: 10px 0 10px 0;
+    flex: .45;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb(58, 65, 78);
+}
