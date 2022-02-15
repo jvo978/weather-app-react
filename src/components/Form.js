@@ -6,7 +6,7 @@ const Form = ({ submitSearch }) => {
 
     const [location, setLocation] = useState('')
 
-    const onSubmit = (event) => {
+    const onSubmitSearch = (event) => {
         event.preventDefault()
         if (!location || location === '') return;
         submitSearch(location)
@@ -14,11 +14,9 @@ const Form = ({ submitSearch }) => {
 
   return (
     <div className="form__container">
-    <form onSubmit={onSubmit}>
+    <form className="form__item" onSubmit={onSubmitSearch}>
         <input value={location} type="text" placeholder="Search Location" autoComplete='off' onChange={(event) => setLocation(event.target.value)}/>
-        <div>
-            <button type="submit">Search</button>
-        </div>
+         <button type="submit">Search</button>
     </form>
     </div>
   );
