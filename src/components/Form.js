@@ -10,6 +10,7 @@ const Form = ({ submitSearch }) => {
         event.preventDefault()
         if (!location || location === '') return;
         submitSearch(location)
+        setLocation('')
     }
 
   return (
