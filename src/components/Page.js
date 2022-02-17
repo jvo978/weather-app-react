@@ -12,11 +12,11 @@ const BASEURL = "https://community-open-weather-map.p.rapidapi.com"
 function Page() {
 
 const [error, setError] = useState(false)
-const [showForm, setShowForm] = useState(true)
 const [errorMessage, setErrorMessage] = useState('')
 const [forecast, setForecast] = useState(null)
 
 const onSubmit = async location => {
+    try {
         const { data } = await axios({
             method: 'GET',
             url: `${BASEURL}/weather`,
@@ -31,10 +31,10 @@ const onSubmit = async location => {
         })
 
         if (!data || data.length === 0) {
-            setErrorMessage("Location was not found...")
-            return;
+            setError(true)
+            throw new SyntaxError('Location was not found...')
         }
-        
+
         const response = await axios({
             method: 'GET',
             url: `${BASEURL}/forecast/daily`,
@@ -49,23 +49,35 @@ const onSubmit = async location => {
         })
 
         if (!response.data || response.data.length === 0) {
-            setErrorMessage("No additional forecast found for this location..")
-            return;
+            setError(true)
+            throw new SyntaxError('No additional forecast found for this location..')
         }
 
         const currentForecast = getCurrentForecast(data.main.temp, data.name, data.dt, data.weather[0]);
         const currentForecastDetails = getCurrentForecastDetails(data.main, data.wind)
         const upcomingForecast = getUpcomingForecast(response.data.list)
-
         setForecast({ currentForecast, currentForecastDetails, upcomingForecast })
+        setError(false)
+
+    } catch(err) {
+        setError(true)
+        if (forecast) {
+            setForecast({...forecast})
+        }
+        if (err.response.data.message) {
+            setErrorMessage(err.response.data.message)
+        } else {
+            setErrorMessage(err.message)
+        }
+    }
 }
 
   return (
         <div className="page__container">
             <div className='page__header'>Weather App</div>
-            <Form submitSearch={onSubmit} />
-            {forecast && <Forecast forecast={forecast} /> }
-            <div className='page__errorMessage'>{errorMessage}</div>
+                <Form submitSearch={onSubmit} setErrorMessage={setErrorMessage} setError={setError} />
+            {error && <div className="page__errorMessage">{errorMessage}</div>}
+            {forecast && <Forecast forecast={forecast} />}
         </div>
   )
 }

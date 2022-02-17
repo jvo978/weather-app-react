@@ -4,8 +4,9 @@ function UpcomingForecast({ upcomingDetails }) {
   return (
     <div className="upcoming__container">
       <div className='upcoming__top'>
-        Next Five Days
+        5 DAY FORECAST
       </div>
+      <hr />
       <div className='upcoming__bottom'>
         {upcomingDetails.map((detail, id) => {
             return (

@@ -2,13 +2,17 @@ import '../styles/Form.css'
 import { useState } from 'react';
 import PropTypes from 'prop-types'
 
-const Form = ({ submitSearch }) => {
+const Form = ({ submitSearch, setErrorMessage, setError }) => {
 
     const [location, setLocation] = useState('')
 
     const onSubmitSearch = (event) => {
         event.preventDefault()
-        if (!location || location === '') return;
+        if (!location || location === '') {
+          setErrorMessage('Search field cannot be blank')
+          setError(true)
+          return;
+        }
         submitSearch(location)
         setLocation('')
     }
@@ -24,7 +28,9 @@ const Form = ({ submitSearch }) => {
 }
 
 Form.propTypes = {
-    submitSearch: PropTypes.func.isRequired
+    submitSearch: PropTypes.func.isRequired,
+    setError: PropTypes.func.isRequired,
+    setErrorMessage: PropTypes.func.isRequired
 }
 
 export default Form;
