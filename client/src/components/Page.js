@@ -118,7 +118,7 @@ const onSubmit = async location => {
                         <Map latLong={latLng} />
                      </div>
                 }
-                {listOfHistory && 
+                {listOfHistory.length > 0 && 
                     <div className='historyList'>
                         <div className='recentSearch'>Recent Searches</div>
                         {listOfHistory.map((item, i) => {
