@@ -10,7 +10,6 @@ import getUpcomingForecast from '../helpers.js/getUpcomingForecast';
 
 const BASEURL = "https://community-open-weather-map.p.rapidapi.com"
 const HEROKU_URL = "https://weather-jvo978-reactjs.herokuapp.com"
-const CORSPROXY = "https://mycorsproxy-jvo978.herokuapp.com"
 
 function Page() {
 
@@ -21,10 +20,7 @@ const [latLng, setlatLng] = useState(null)
 const [listOfHistory, setListOfHistory] = useState([])
 
 const onLoad = () => {
-    axios.get(`${CORSPROXY}/${HEROKU_URL}/`, { headers: {
-            "Access-Control-Allow-Origin": "*",
-            'X-Requested-With': 'XMLHttpRequest'
-    }}).then((response) => {
+    axios.get(`${HEROKU_URL}/`).then((response) => {
         if (response.data.err) {
             return;
         }
@@ -74,16 +70,13 @@ const onSubmit = async location => {
             throw new SyntaxError('No additional forecast found for this location..')
         }
 
-        await axios.post(`${CORSPROXY}/${HEROKU_URL}/`, { 
+        await axios.post(`${HEROKU_URL}/`, { 
             location_id: data.id,
             location: data.name,
             country: data.sys.country,
             lat: data.coord.lat,
             lon: data.coord.lon
-        }, { headers: {
-                "Access-Control-Allow-Origin": "*",
-                'X-Requested-With': 'XMLHttpRequest'
-        }}).then((response) => {
+        }).then((response) => {
             if (response.data.err) {
                 console.log(response.data.err)
                 return;
