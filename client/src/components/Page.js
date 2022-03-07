@@ -22,6 +22,7 @@ const [listOfHistory, setListOfHistory] = useState([])
 
 const onLoad = () => {
     axios.get(`${CORSPROXY}/${HEROKU_URL}/`, { headers: {
+            "Access-Control-Allow-Origin": "*",
             'X-Requested-With': 'XMLHttpRequest'
     }}).then((response) => {
         if (response.data.err) {
@@ -80,6 +81,7 @@ const onSubmit = async location => {
             lat: data.coord.lat,
             lon: data.coord.lon
         }, { headers: {
+                "Access-Control-Allow-Origin": "*",
                 'X-Requested-With': 'XMLHttpRequest'
         }}).then((response) => {
             if (response.data.err) {
