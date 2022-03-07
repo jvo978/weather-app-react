@@ -3,7 +3,7 @@ import { useState } from 'react';
 import '../styles/Map.css'
 
 const containerStyle = {
-    width: '400px',
+    width: '300px',
     height: '470px',
   };
 

@@ -4,9 +4,9 @@ import '../styles/CurrentForecastDetails.css'
 function CurrentForecastDetails({ forecastDetails }) {
   return (
     <div className='currentForecast__details'>
-        {forecastDetails.map((details, id) => {
+        {forecastDetails.map((details, i) => {
             return (
-              <div key={id} className="currentForecast__detailItem">
+              <div key={i} className="currentForecast__detailItem">
                 <div>{details.name}</div>
                 <div>{details.value}{details.units}</div>
               </div>

@@ -2,20 +2,23 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    max-width: 1100px;
-    width: 1100px;
-    height: 650px;
-    max-height: 650px;
+    max-width: 1300px;
+    width: 1300px;
+    height: 800px;
+    max-height: 800px;
     background-color: #708090;
     border: 1px solid black;
     margin-top: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 25px;
     justify-content: center;
+    overflow: auto;
 }
 
 .page__none {
     width: 600px;
-    height: 300px;
+    height: 100%;
+    max-width: 700px;
+    max-height: 600px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -24,13 +27,13 @@
     margin-top: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 25px;
     justify-content: center;
+    overflow: auto;
 }
 
 .page__header {
     font-size: 50px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    /* color: rgb(58, 65, 78); */
     color: black;
 }
 
@@ -49,9 +52,41 @@
     text-align: center;
 }
 
+.page__forecastMapContainer {
+    display: flex;
+}
+
 .page__forecastMap {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+}
+
+.historyList {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 250px;
+    height: 450px;
+    max-height: 450px;
+    max-width: 400px;
+    margin-top: 10px;
     align-items: center;
+}
+
+.historyList ul {
+    margin: 5px;
+}
+
+.historyList li {
+    padding-right: 25px;
+    list-style: none;
+}
+
+.historyList li:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.historyList .recentSearch {
+    font-weight: bold;
+    font-size: 20px;
 }
